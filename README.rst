@@ -1,7 +1,7 @@
 Patches
 *******
 
-OSPI driver doesn't allow to send data phase only
+H7 OSPI driver doesn't allow to send data phase only
 =========
 
 Although the OSPI can transmit data phase only, the driver denies its configuration.
