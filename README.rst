@@ -1,3 +1,11 @@
+# Patches
+
+## OSPI driver doesn't allow to send data phase only
+
+Although the OSPI can transmit data phase only, the driver denies its configuration.
+
+# Readme
+
 This module provides the required STM32cube packages, dtsi files and libraries
 needed to build a Zephyr application running on STM32 silicon.
 
