@@ -3073,9 +3073,27 @@ static HAL_StatusTypeDef OSPI_ConfigCmd(OSPI_HandleTypeDef *hospi, OSPI_RegularC
     }
     else
     {
+      /* MODIFIED */
+      if (cmd->DataMode != HAL_OSPI_DATA_NONE)
+      {
+        /* ---- Command with data ---- */
+
+        /* Configure the CCR register with all communication parameters */
+        MODIFY_REG((*ccr_reg), (OCTOSPI_CCR_DMODE  | OCTOSPI_CCR_DDTR),
+                   (cmd->DataMode | cmd->DataDtrMode));
+      }
+      else
+      {
+        /* ---- invalid command configuration (no instruction, no address, no data) ---- */
+
+        status = HAL_ERROR;
+        hospi->ErrorCode = HAL_OSPI_ERROR_INVALID_PARAM;
+      }
+      /* MODIFIED */
+
       /* ---- Invalid command configuration (no instruction, no address) ---- */
-      status = HAL_ERROR;
-      hospi->ErrorCode = HAL_OSPI_ERROR_INVALID_PARAM;
+      //status = HAL_ERROR;
+      //hospi->ErrorCode = HAL_OSPI_ERROR_INVALID_PARAM;
     }
   }
 
