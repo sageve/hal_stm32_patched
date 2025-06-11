@@ -10,6 +10,10 @@
 #include <stm32h7rsxx_ll_icache.h>
 #elif defined(CONFIG_SOC_SERIES_STM32L5X)
 #include <stm32l5xx_ll_icache.h>
+#elif defined(CONFIG_SOC_SERIES_STM32N6X)
+#include <stm32n6xx_ll_icache.h>
+#elif defined(CONFIG_SOC_SERIES_STM32U3X)
+#include <stm32u3xx_ll_icache.h>
 #elif defined(CONFIG_SOC_SERIES_STM32U5X)
 #include <stm32u5xx_ll_icache.h>
 #elif defined(CONFIG_SOC_SERIES_STM32WBAX)

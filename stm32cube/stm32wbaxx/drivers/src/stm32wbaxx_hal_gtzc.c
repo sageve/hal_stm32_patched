@@ -113,17 +113,32 @@
 
 /* Definitions for GTZC TZSC & TZIC ALL register values */
 /* TZSC1 / TZIC1 instances */
-#if defined (STM32WBA54xx) || defined (STM32WBA55xx)
+#if defined (STM32WBA54xx) || defined (STM32WBA55xx) || defined(STM32WBA5Mxx)
 #define TZSC1_SECCFGR1_ALL       (0x000222C3UL)
 #define TZSC1_SECCFGR2_ALL       (0x018F00EBUL)
 #define TZSC1_SECCFGR3_ALL       (0x01C17858UL)
+#define TZIC1_IER4_ALL           (0xC3C0EF87UL)
+#elif defined (STM32WBA63xx)
+#define TZSC1_SECCFGR1_ALL       (0x000222C3UL)
+#define TZSC1_SECCFGR2_ALL       (0x018F00EBUL)
+#define TZSC1_SECCFGR3_ALL       (0x01C17858UL)
+#define TZIC1_IER4_ALL           (0xC3C0EF87UL)
+#elif defined (STM32WBA62xx) || defined (STM32WBA65xx)
+#define TZSC1_SECCFGR1_ALL       (0x000367C7UL)
+#define TZSC1_SECCFGR2_ALL       (0x038F00EBUL)
+#define TZSC1_SECCFGR3_ALL       (0x01C17C58UL)
+#define TZIC1_IER4_ALL           (0xC3C0EF87UL)
+#elif defined (STM32WBA64xx)
+#define TZSC1_SECCFGR1_ALL       (0x000367C7UL)
+#define TZSC1_SECCFGR2_ALL       (0x018F00EBUL)
+#define TZSC1_SECCFGR3_ALL       (0x01C17C58UL)
 #define TZIC1_IER4_ALL           (0xC3C0EF87UL)
 #else
 #define TZSC1_SECCFGR1_ALL       (0x000222C3UL)
 #define TZSC1_SECCFGR2_ALL       (0x010F006BUL)
 #define TZSC1_SECCFGR3_ALL       (0x00C17858UL)
 #define TZIC1_IER4_ALL           (0xC3C0EF87UL)
-#endif /* STM32WBA54xx || STM32WBA55xx */
+#endif /* STM32WBA54xx || STM32WBA55xx || STM32WBA5Mxx */
 
 #define TZSC1_PRIVCFGR1_ALL      TZSC1_SECCFGR1_ALL
 #define TZSC1_PRIVCFGR2_ALL      TZSC1_SECCFGR2_ALL

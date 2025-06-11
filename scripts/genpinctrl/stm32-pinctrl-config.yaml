@@ -56,7 +56,11 @@
   match: "^DAC(?:\\d+)?_OUT\\d+$"
 
 - name: DCMI
-  match: "^DCMI_(?:HSYNC|PIXCLK|VSYNC|D[0-7])$"
+  match: "^DCMI_(?:HSYNC|PIXCLK|VSYNC|D(?:[0-9]|1[0-3]))$"
+  slew-rate: very-high-speed
+
+- name: DCMIPP
+  match: "^DCMIPP_(?:HSYNC|PIXCLK|VSYNC|D(?:[0-9]|1[0-5]))$"
   slew-rate: very-high-speed
 
 - name: DFSDM
@@ -64,84 +68,24 @@
   slew-rate: very-high-speed
   mode: alternate
 
-- name: ETH_COL
-  match: "^ETH_COL$"
+- name: ETH
+  match: "^ETH+_(?:COL$|CRS|CRS_DV|MDC|MDIO|PPS_OUT|REF_CLK|RX_CLK|RX_DV|RX_ER||RXD[0-3]|TX_CLK|TX_EN|TXD[0-3])$"
   slew-rate: very-high-speed
 
-- name: ETH_CRS
-  match: "^ETH_CRS$"
+- name: ETH (Extended)
+  match: "^ETH\\d+_(?:MDC|MDIO|PHY_INTN|PPS_OUT|CLK|TX_ER)$"
   slew-rate: very-high-speed
 
-- name: ETH_CRS_DV
-  match: "^ETH_CRS_DV$"
+- name: ETH_MII
+  match: "^ETH\\d_MII_(?:COL|CRS|RXD[0-3]|RX_CLK|RX_DV|RX_ER|TX_EN|TXD[0-3]|TX_CLK|TX_EN)$"
   slew-rate: very-high-speed
 
-- name: ETH_MDC
-  match: "^ETH_MDC$"
+- name: ETH_RGMII
+  match: "^ETH\\d+_RGMII_(?:CLK125|GTX_CLK|RXD[0-3]|RX_CLK|RX_CTL|RX_ER|TX_EN|RX_DV|TXD[0-3]|TX_CTL|TX_EN)$"
   slew-rate: very-high-speed
 
-- name: ETH_MDIO
-  match: "^ETH_MDIO$"
-  slew-rate: very-high-speed
-
-- name: ETH_PPS_OUT
-  match: "^ETH_PPS_OUT$"
-  slew-rate: very-high-speed
-
-- name: ETH_REF_CLK
-  match: "^ETH_REF_CLK$"
-  slew-rate: very-high-speed
-
-- name: ETH_RX_CLK
-  match: "^ETH_RX_CLK$"
-  slew-rate: very-high-speed
-
-- name: ETH_RX_DV
-  match: "^ETH_RX_DV$"
-  slew-rate: very-high-speed
-
-- name: ETH_RX_ER
-  match: "^ETH_RX_ER$"
-  slew-rate: very-high-speed
-
-- name: ETH_RXD0
-  match: "^ETH_RXD0$"
-  slew-rate: very-high-speed
-
-- name: ETH_RXD1
-  match: "^ETH_RXD1$"
-  slew-rate: very-high-speed
-
-- name: ETH_RXD2
-  match: "^ETH_RXD2$"
-  slew-rate: very-high-speed
-
-- name: ETH_RXD3
-  match: "^ETH_RXD3$"
-  slew-rate: very-high-speed
-
-- name: ETH_TX_CLK
-  match: "^ETH_TX_CLK$"
-  slew-rate: very-high-speed
-
-- name: ETH_TX_EN
-  match: "^ETH_TX_EN$"
-  slew-rate: very-high-speed
-
-- name: ETH_TXD0
-  match: "^ETH_TXD0$"
-  slew-rate: very-high-speed
-
-- name: ETH_TXD1
-  match: "^ETH_TXD1$"
-  slew-rate: very-high-speed
-
-- name: ETH_TXD2
-  match: "^ETH_TXD2$"
-  slew-rate: very-high-speed
-
-- name: ETH_TXD3
-  match: "^ETH_TXD3$"
+- name: ETH_RMII
+  match: "^ETH\\d+_RMII_(?:CRS_DV|REF_CLK|RXD[0-1]|RX_CLK|RX_ER|TX_EN|RX_DV|TXD[0-1]|TX_CLK|TX_EN)$"
   slew-rate: very-high-speed
 
 - name: FDCAN_RX
@@ -166,6 +110,10 @@
 
 - name: HRTIM_SCIN / HRTIM_SCOUT
   match: "^HRTIM\\d+_SC(IN|OUT)$"
+
+- name: HSPI
+  match: "^HSPI(.*)(?:CLK|NCS|DQS[0-1]|IO\\d+)$"
+  slew-rate: very-high-speed
 
 - name: I2C_SCL
   match: "^I2C\\d+_SCL$"
@@ -203,6 +151,9 @@
   match: "^I3C\\d+_SDA$"
   slew-rate: very-high-speed
 
+- name: JTAG PORT
+  match: ^(SYS|DEBUG)_((JTMS-)?SWDIO|(JTCK-)?SWCLK|JTDI|JTDO(-TRACESWO|-SWO)?|(N)?JTRST)$
+
 - name: LTDC
   match: "^LTDC_(?:DE|CLK|HSYNC|VSYNC|R[0-7]|G[0-7]|B[0-7])$"
 
@@ -220,8 +171,11 @@
   slew-rate: very-high-speed
 
 - name: XSPIM
-  match: "^XSPIM(.*)(?:CLK|NCS[0-1]|DQS[0-1]|IO[0-7])$"
+  match: "^XSPIM(.*)(?:CLK|NCS[1-2]|DQS[0-1]|IO\\d+)$"
   slew-rate: very-high-speed
+
+- name: SAI
+  match: "^SAI\\d+_(?:D\\d+)?(?:CK\\d+)?(?:FS_A)?(?:FS_B)?(?:MCLK_A)?(?:MCLK_B)?(?:SD_A)?(?:SD_B)?(?:SCK_A)?(?:SCK_B)?(?:EXTCLK)?$"
 
 - name: SDMMC
   match: "^SDMMC\\d+_(?:CK)?(?:CKIN)?(?:CDIR)?(?:CMD)?(?:D\\d+)?(?:D0DIR)?(?:D123DIR)?$"
@@ -259,15 +213,16 @@
 - name: TIM_CH / TIM_CHN
   match: "^TIM\\d+_CH\\d+N?$"
 
+- name: TSC
+  match: "^TSC_(?:G\\d+_IO\\d+|SYNC)$"
+
 - name: UART_CTS / USART_CTS / LPUART_CTS
   match: "^(?:LP)?US?ART\\d+_CTS$"
-  drive: open-drain
   bias: pull-up
 
 - name: UART_RTS / USART_RTS / LPUART_RTS
   match: "^(?:LP)?US?ART\\d+_RTS$"
-  drive: open-drain
-  bias: pull-up
+  drive: push-pull
 
 - name: UART_DE / USART_DE / LPUART_DE
   match: "^(?:LP)?US?ART\\d+_DE$"
@@ -296,6 +251,3 @@
 
 - name: USB
   match: "^USB_(?:DM)?(?:DP)?(?:NOE)?$"
-
-- name: JTAG PORT
-  match: ^(SYS|DEBUG)_((JTMS-)?SWDIO|(JTCK-)?SWCLK|JTDI|JTDO(-TRACESWO|-SWO)?|(NJ)?JTRST)$

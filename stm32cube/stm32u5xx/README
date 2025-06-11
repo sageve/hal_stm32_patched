@@ -6,7 +6,7 @@ Origin:
    http://www.st.com/en/embedded-software/stm32cubeu5.html
 
 Status:
-   version v1.6.0
+   version v1.7.0
 
 Purpose:
    ST Microelectronics official MCU package for STM32U5 series.
@@ -23,7 +23,7 @@ URL:
    https://github.com/STMicroelectronics/STM32CubeU5
 
 Commit:
-   6591004477fdd8fba04573c0373679f2be0da595
+   7392378474639cdcd87a71918f5272f847454055
 
 Maintained-by:
    External
@@ -47,5 +47,11 @@ Patch List:
    *Fix to remove PAGESIZE definition which conflicts with POSIX
     Impacted files:
      drivers/include/Legacy/stm32_hal_legacy.h
+
+   *Fix SDIO initialization failure when skipping card identification sequence
+     Fixes an issue in the STM32U5 SDIO driver where HAL_SDIO_Init() fails if
+     the card identification sequence is skipped.
+     Impacted files:
+      stm32cube/stm32u5xx/drivers/src/stm32u5xx_hal_sdio.c
 
    See release_note.html from STM32Cube

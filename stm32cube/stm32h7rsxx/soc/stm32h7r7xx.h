@@ -229,8 +229,8 @@ typedef enum
 /** @} */ /* End of group Configuration_of_CMSIS */
 
 
-#include <core_cm7.h>                     /*!< ARM Cortex-M7 processor and core peripherals  */
-#include "system_stm32h7rsxx.h"             /*!< STM32H7RSxx System */
+#include "core_cm7.h"                     /*!< ARM Cortex-M7 processor and core peripherals  */
+#include "system_stm32h7rsxx.h"           /*!< STM32H7RSxx System */
 
 
 /* =========================================================================================================================== */
@@ -2178,7 +2178,6 @@ typedef struct
 #define FMC_Bank3_R_BASE                (FMC_R_BASE + 0x0080UL)
 #define FMC_Bank5_6_R_BASE              (FMC_R_BASE + 0x0140UL)
 #define XSPI1_R_BASE                    (AHB5PERIPH_BASE + 0x5000UL)
-#define DLYB_XSPI1_BASE                 (AHB5PERIPH_BASE + 0x6000UL)
 #define SDMMC1_BASE                     (AHB5PERIPH_BASE + 0x7000UL)
 #define DLYB_SDMMC1_BASE                (AHB5PERIPH_BASE + 0x8000UL)
 #define RAMECC1_BASE                    (AHB5PERIPH_BASE + 0x9000UL)
@@ -2188,7 +2187,6 @@ typedef struct
 #define RAMECC1_Monitor3_BASE           (RAMECC1_BASE + 0x80UL)
 #define RAMECC1_Monitor4_BASE           (RAMECC1_BASE + 0xA0UL)
 #define XSPI2_R_BASE                    (AHB5PERIPH_BASE + 0xA000UL)
-#define DLYB_XSPI2_BASE                 (AHB5PERIPH_BASE + 0xB000UL)
 #define XSPIM_BASE                      (AHB5PERIPH_BASE + 0xB400UL)
 #define GFXMMU_BASE                     (AHB5PERIPH_BASE + 0x010000UL)
 #define GPU2D_BASE                      (AHB5PERIPH_BASE + 0x014000UL)
@@ -2257,9 +2255,6 @@ typedef struct
 
 /*!< Unique device ID register base address */
 #define UID_BASE                        (0x08FFF800UL)
-
-/*!< Flash size data register base address  */
-#define FLASHSIZE_BASE                  (0x08FFF80CUL)
 
 /*!< Package data register base address     */
 #define PACKAGE_BASE                    (0x08FFF80CUL)
@@ -2454,8 +2449,6 @@ typedef struct
 #define DCMIPP                 ((DCMIPP_TypeDef *) DCMIPP_BASE)
 #define DLYB_SDMMC1            ((DLYB_TypeDef *) DLYB_SDMMC1_BASE)
 #define DLYB_SDMMC2            ((DLYB_TypeDef *) DLYB_SDMMC2_BASE)
-#define DLYB_XSPI1             ((DLYB_TypeDef *) DLYB_XSPI1_BASE)
-#define DLYB_XSPI2             ((DLYB_TypeDef *) DLYB_XSPI2_BASE)
 #define DMA2D                  ((DMA2D_TypeDef *) DMA2D_BASE)
 #define DTS                    ((DTS_TypeDef *) DTS_BASE)
 #define ETH                    ((ETH_TypeDef *)ETH_BASE)
@@ -23067,9 +23060,7 @@ typedef struct
 #define IS_DCMIPP_ALL_INSTANCE(INSTANCE) ((INSTANCE) == DCMIPP)
 
 /******************************* DLYB Instances *******************************/
-#define IS_DLYB_ALL_INSTANCE(INSTANCE) (((INSTANCE) == DLYB_XSPI1) || \
-                                        ((INSTANCE) == DLYB_XSPI2) || \
-                                        ((INSTANCE) == DLYB_SDMMC1)   || \
+#define IS_DLYB_ALL_INSTANCE(INSTANCE) (((INSTANCE) == DLYB_SDMMC1)   || \
                                         ((INSTANCE) == DLYB_SDMMC2))
 
 /******************************** DMA Instances *******************************/

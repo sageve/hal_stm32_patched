@@ -170,6 +170,10 @@
   match: "^I2S\\d+_SD$"
   mode: alternate
 
+- name: JTAG PORT
+  match: "^(SYS|DEBUG)_((JTMS-)?SWDIO|(JTCK-)?SWCLK|JTDI|JTDO(-TRACESWO|-SWO)?|(NJ)?JTRST)$"
+  mode: alternate
+
 - name: RCC_MCO
   match: "^RCC_MCO_?(\\d+)?$"
   mode: alternate
@@ -230,6 +234,10 @@
   mode: input
   variant: pwm_in
 
+- name: TSC
+  match: "^TSC_(?:G\\d+_IO\\d+|SYNC)$"
+  mode: alternate
+
 - name: UART_CTS / USART_CTS
   match: "^US?ART\\d+_CTS$"
   drive: open-drain
@@ -255,3 +263,4 @@
 - name: USB
   match: "^USB_(?:DM)?(?:DP)?$"
   mode: input
+
